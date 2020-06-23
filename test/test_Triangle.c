@@ -1,6 +1,8 @@
 #include "unity.h"
 #include "Triangle.h"
+#include "Exception.h"
 #include "CException.h"
+
 
 CEXCEPTION_T ex;
 
@@ -11,6 +13,41 @@ void setUp(void)
 void tearDown(void)
 {
 }
+
+int multiply (int valA, int valB){
+	if(valA <0)
+		//Throw(NEGATIVE_VALUE);
+	throwException(NEGATIVE_VALUE,NULL,0,"The valA operand cannot be negative:%d",valA);
+	if(valB<0)
+		//Throw(NEGATIVE_VALUE);
+	throwException(NEGATIVE_VALUE,NULL,0,"The valB operand cannot be negative:%d",valB);
+	return valA*valB;
+}
+
+int addAndMultiplyPositives(int val1, int val2,int val3){
+	return multiply(val1+val2,val3);
+}
+
+void test_addAndMultiplyPositives_expect_EXCEPTION_to_be_thrown(){
+	Try{
+	int result= addAndMultiplyPositives(3,4,-5);
+	TEST_FAIL_MESSAGE("Expect NEGATIVE_VALUE to be thrown");
+	}Catch(ex){
+		//printf("caught an exception is 0x%x",ex);
+		//printf("Hello %s,%d,%c,%f\n","world!",56,'b',6.78);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(NEGATIVE_VALUE,ex->errorCode);
+		freeException(ex);
+	}
+	//TEST_ASSERT_EQUAL(35,result);
+}
+
+void xTest_print(){
+//print(4,1,56,-34,986565);
+char buffer[1024];
+sprintf("Hello %s,%d,%c,%f\n","world!",56,'b',6.78);
+}
+
 
 void test_getTriangleType_given_4_4_3_expect_ISOCELES() {
 	TriangleType type = getTriangleType(4, 4, 3);
@@ -128,3 +165,7 @@ void test_TriangleType_given_0_0_0_expect_INVALID_LENGTH_to_be_thrown()
 		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
 	}
 }
+
+
+
+
