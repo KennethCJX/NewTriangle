@@ -30,7 +30,7 @@ int addAndMultiplyPositives(int val1, int val2,int val3){
 
 void test_addAndMultiplyPositives_expect_EXCEPTION_to_be_thrown(){
 	Try{
-	int result= addAndMultiplyPositives(3,4,-5);
+	int result= addAndMultiplyPositives(3,-4,-5);
 	TEST_FAIL_MESSAGE("Expect NEGATIVE_VALUE to be thrown");
 	}Catch(ex){
 		//printf("caught an exception is 0x%x",ex);
@@ -42,11 +42,12 @@ void test_addAndMultiplyPositives_expect_EXCEPTION_to_be_thrown(){
 	//TEST_ASSERT_EQUAL(35,result);
 }
 
-void xTest_print(){
+/*void Test_print(){
 //print(4,1,56,-34,986565);
 char buffer[1024];
 sprintf("Hello %s,%d,%c,%f\n","world!",56,'b',6.78);
 }
+*/
 
 
 void test_getTriangleType_given_4_4_3_expect_ISOCELES() {
@@ -112,8 +113,9 @@ void test_TriangleType_given_1_2_0_expect_INVALID_LENGTH_to_be_thrown()
 	TriangleType type = getTriangleType(1,2,0);
 	TEST_FAIL_MESSAGE("Expect INVALID_LENGTH_to_be_thrown");
 	}Catch(ex){
-		printf("There an error: 0x%x Invalid Length",ex);
-		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex->errorCode);
+		freeException(ex);
 	}
 }
 
@@ -124,8 +126,9 @@ void test_TriangleType_given_5_MINUS2_10_expect_INVALID_LENGTH_to_be_thrown()
 	TriangleType type = getTriangleType(5,-2,10);
 	TEST_FAIL_MESSAGE("Expect INVALID_LENGTH_to_be_thrown");
 	}Catch(ex){
-		printf("There an error: 0x%x Invalid Length",ex);
-		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex->errorCode);
+		freeException(ex);
 	}
 }
 
@@ -137,8 +140,9 @@ void test_TriangleType_given_MINUS1_2_5_expect_INVALID_LENGTH_to_be_thrown()
 	TriangleType type = getTriangleType(-1,2,5);
 	TEST_FAIL_MESSAGE("Expect INVALID_LENGTH_to_be_thrown");
 	}Catch(ex){
-		printf("There an error: 0x%x Invalid Length",ex);
-		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex->errorCode);
+		freeException(ex);
 	}
 }
 
@@ -149,8 +153,9 @@ void test_TriangleType_given_2_5_MINUS8_expect_INVALID_LENGTH_to_be_thrown()
 	TriangleType type = getTriangleType(2,5,0-8);
 	TEST_FAIL_MESSAGE("Expect INVALID_LENGTH_to_be_thrown");
 	}Catch(ex){
-		printf("There an error: 0x%x Invalid Length",ex);
-		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex->errorCode);
+		freeException(ex);
 	}
 }
 
@@ -161,8 +166,9 @@ void test_TriangleType_given_0_0_0_expect_INVALID_LENGTH_to_be_thrown()
 	TriangleType type = getTriangleType(0,0,0);
 	TEST_FAIL_MESSAGE("Expect INVALID_LENGTH_to_be_thrown");
 	}Catch(ex){
-		printf("There an error: 0x%x Invalid Length",ex);
-		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex);
+		dumpException(ex);
+		TEST_ASSERT_EQUAL(INVALID_LENGTH, ex->errorCode);
+		freeException(ex);
 	}
 }
 

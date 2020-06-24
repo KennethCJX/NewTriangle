@@ -14,7 +14,7 @@ TriangleType getTriangleType(int side1, int side2, int side3){
 	//if(x==NORESULT)
 		//return UNKNOWN;
 	if(side1<=0||side2<=0||side3<=0)
-		Throw(INVALID_LENGTH);
+		throwException(INVALID_LENGTH,NULL,0,"Either Side cannot be negative value or zero");
 	if(side1==side2 && side1==side3 && side2==side3)
 	{
 		return EQUILATERAL;
