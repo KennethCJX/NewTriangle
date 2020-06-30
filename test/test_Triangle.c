@@ -16,10 +16,8 @@ void tearDown(void)
 
 int multiply (int valA, int valB){
 	if(valA <0)
-		//Throw(NEGATIVE_VALUE);
 	throwException(NEGATIVE_VALUE,NULL,0,"The valA operand cannot be negative:%d",valA);
 	if(valB<0)
-		//Throw(NEGATIVE_VALUE);
 	throwException(NEGATIVE_VALUE,NULL,0,"The valB operand cannot be negative:%d",valB);
 	return valA*valB;
 }
@@ -33,21 +31,11 @@ void test_addAndMultiplyPositives_expect_EXCEPTION_to_be_thrown(){
 	int result= addAndMultiplyPositives(3,-4,-5);
 	TEST_FAIL_MESSAGE("Expect NEGATIVE_VALUE to be thrown");
 	}Catch(ex){
-		//printf("caught an exception is 0x%x",ex);
-		//printf("Hello %s,%d,%c,%f\n","world!",56,'b',6.78);
 		dumpException(ex);
 		TEST_ASSERT_EQUAL(NEGATIVE_VALUE,ex->errorCode);
 		freeException(ex);
 	}
-	//TEST_ASSERT_EQUAL(35,result);
 }
-
-/*void Test_print(){
-//print(4,1,56,-34,986565);
-char buffer[1024];
-sprintf("Hello %s,%d,%c,%f\n","world!",56,'b',6.78);
-}
-*/
 
 
 void test_getTriangleType_given_4_4_3_expect_ISOCELES() {

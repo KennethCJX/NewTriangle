@@ -5,9 +5,9 @@
 #include <stdarg.h>
 
 
-Exception *cerateException(char *msg, int errorCode){
+Exception *cerateException(char *msg, int errorCode)
+{
 	Exception *ex;
-
 	ex = malloc(sizeof(Exception)); //dynamic allocation
 	ex->msg = msg;
 	ex->errorCode = errorCode;
@@ -15,21 +15,26 @@ Exception *cerateException(char *msg, int errorCode){
 	return ex;
 }
 
-void freeException(Exception *e){
-	if(e->data && e->freeDataOnFreeingException){
+void freeException(Exception *e)
+{
+	if(e->data && e->freeDataOnFreeingException)
+	{
 	free(e->data);
 	}
-	if(e->msg){
+	if(e->msg)
+	{
 	free(e->msg);
-}
+	}
 	free(e);
 }
 
-void dumpException(Exception *e){
+void dumpException(Exception *e)
+{
 	printf("%s(error=00x%x)\n", e->msg, e->errorCode);
 }
 
-void throwException(int errorCode, void *data, int freeDataOnFreeingException,char *message,...){
+void throwException(int errorCode, void *data, int freeDataOnFreeingException,char *message,...)
+{
 	Exception *ex;
 	size_t len;
 	char *buffer; 
